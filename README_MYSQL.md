@@ -88,6 +88,84 @@ max_connections=250
 root@991e767c2815:/etc/mysql/conf.d#
 ```
 
+## Create Data Base for our Project
+Now, I make to database for our project ussing command client mysql:
+
+#### Fisrt step, we create database
+
+```
+$ docker exec -it some-mysql bash
+root@991e767c2815:/# mysql -uroot -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.25 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> CREATE DATABASE messages;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| messages           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+```
+
+#### Second step, we create some tables
+
+Before, we can select what DB we ussing, for that ussing command 'USE'
+
+```
+mysql> USE messages;
+Database changed
+```
+
+We need one table, where RabbitMQ when read a queue, and has a new iten, the iten are save in this table. This table has name 'messagebroker'.
+
+| field | detail | description|
+| --- | --- | --- |
+| id | long, primary key |field key of table |
+| menssage | varchar 100 characters, not null | field where the message are save |
+
+```
+mysql> CREATE TABLE messagebroker(
+    -> id INT NOT NULL,
+    -> message VARCHAR(100) NOT NULL,
+    -> PRIMARY KEY(id));
+Query OK, 0 rows affected (0.04 sec)
+```
+
+For know is table are been create, ussing command 'DESCRIBE':
+
+```
+mysql> DESCRIBE messagebroker
+    -> ;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int          | NO   | PRI | NULL    |       |
+| message | varchar(100) | NO   |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
+```
+
 ## Some command Docker
 
 To start your container run:
