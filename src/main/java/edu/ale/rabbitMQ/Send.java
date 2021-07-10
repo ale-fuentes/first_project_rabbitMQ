@@ -9,7 +9,7 @@ import com.rabbitmq.client.ConnectionFactory;
 public class Send {
 	private final static String QUEUE_NAME = "hiale";
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		
@@ -18,7 +18,7 @@ public class Send {
 				Channel channel = connection.createChannel();
 			){
 			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-			String message = "Hi world!!!";
+			String message = "Hi world two!!!";
 			channel.basicPublish("", QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
 			System.out.println(" [x] sent '" + message + "'");
 		}
