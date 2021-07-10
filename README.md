@@ -9,10 +9,10 @@ Hi guys, welcome this simple project about [Message Broker](https://en.wikipedia
 * ![](https://img.shields.io/badge/Editor-Eclipse-informational?style=flat&logo=eclipse-ide&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/Repository-Docker-informational?style=flat&logo=Docker&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/Project_Management-Apache_Maven-informational?style=flat&logo=ApacheMaven&logoColor=white&color=cdcdcd)
 * ![](https://img.shields.io/badge/Code-Java-informational?style=flat&logo=java&logoColor=white&color=cdcdcd)
 ![](https://img.shields.io/badge/Code-SpringBoot-informational?style=flat&logo=springboot&logoColor=white&color=cdcdcd)
-* ![](https://img.shields.io/badge/Message_Broker-RabbitMQ-informational?style=flat&logo=RabbitMQ&logoColor=white&color=cdcdcd) :: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.rabbitmq/amqp-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.rabbitmq/amqp-client)
+* ![](https://img.shields.io/badge/Message_Broker-RabbitMQ-informational?style=flat&logo=RabbitMQ&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/Project_Management-MySql-informational?style=flat&logo=MySql&logoColor=white&color=cdcdcd)
 
 
-## RabbitMQ
+## RabbitMQ :: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.rabbitmq/amqp-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.rabbitmq/amqp-client)
  
 First time, I get a [image docker of RabbitMQ](https://hub.docker.com/_/rabbitmq)
 next command:
@@ -33,7 +33,7 @@ The RAbbitMQ running
 You can get this project for your testing or stating a new project.
 Next steps are explanation how I make this project.
 
-###### Apache Maven
+### Apache Maven
 With [Apache Maven](http://maven.apache.org/index.html) we can management our projects, add, update or delete dependencies the our projects. Is one of the way ... but its use is eassy.
 
 See in [mavem apache site](https://maven.apache.org/guides/getting-started/) how to started a project, I get this next command line for creting a project:
@@ -47,3 +47,43 @@ After finish the process, the legend BUILD SUCCESS show:
 
 For add new dependencies in our project, I find they in [search maven site](https://mvnrepository.com/artifact/com.rabbitmq/amqp-client/5.12.0).
 I search the RabbitMQ Java client, [oficial site rabbitmq](https://www.rabbitmq.com/tutorials/tutorial-one-java.html) say the its is also in the central Maven repository, with the groupId com.rabbitmq and the artifactId amqp-client.
+
+### Get image docker of MySQL
+
+Get imagen of [Docker MySql]https://hub.docker.com/_/mysql)...
+
+```
+$ docker pull mysql
+...
+Status: Downloaded newer image for mysql:latest
+docker.io/library/mysql:latest
+```
+Now up the mySql
+
+```
+$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:latest
+```
+
+test if MySql are running
+
+```
+$ docker ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED              STATUS              PORTS
+                                                                                           NAMES
+991e767c2815   mysql:latest            "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp
+                                                                                           some-mysql
+```
+
+### Frist concept about RabbitMQ with Java
+
+In the site [RabbitMQ API guide](https://www.rabbitmq.com/api-guide.html), talk about some methods that can usse for create conections:
+
+- **Channel**: _represents an AMQP 0-9-1 channel, and provides most of the operations (protocol methods)._
+- **Connection**: _represents an AMQP 0-9-1 connection_
+- **ConnectionFactory**: _constructs Connection instances_
+- **Consumer**: _represents a message consumer_
+- **DefaultConsumer**: _commonly used base class for consumers_
+- **BasicProperties**: _message properties (metadata)_
+- **BasicProperties.Builder**: _builder for BasicProperties_
+
+
