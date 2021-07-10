@@ -6,12 +6,11 @@ Hi guys, welcome this simple project about [Message Broker](https://en.wikipedia
 ## My technologies & tools
 
 * ![](https://img.shields.io/badge/OS-Windows-informational?style=flat&logo=windows&logoColor=white&color=cdcdcd)
-* ![](https://img.shields.io/badge/Editor-Eclipse-informational?style=flat&logo=eclipse-ide&logoColor=white&color=cdcdcd)
+* ![](https://img.shields.io/badge/Editor-Eclipse-informational?style=flat&logo=eclipse-ide&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/Repository-Docker-informational?style=flat&logo=Docker&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/Project_Management-Apache_Maven-informational?style=flat&logo=ApacheMaven&logoColor=white&color=cdcdcd)
 * ![](https://img.shields.io/badge/Code-Java-informational?style=flat&logo=java&logoColor=white&color=cdcdcd)
 ![](https://img.shields.io/badge/Code-SpringBoot-informational?style=flat&logo=springboot&logoColor=white&color=cdcdcd)
-* ![](https://img.shields.io/badge/Project_Management-Apache_Maven-informational?style=flat&logo=ApacheMaven&logoColor=white&color=cdcdcd)
-![](https://img.shields.io/badge/Message_Broker-RabbitMQ-informational?style=flat&logo=RabbitMQ&logoColor=white&color=cdcdcd)
-![](https://img.shields.io/badge/Repository-Docker-informational?style=flat&logo=Docker&logoColor=white&color=cdcdcd)
+* ![](https://img.shields.io/badge/Message_Broker-RabbitMQ-informational?style=flat&logo=RabbitMQ&logoColor=white&color=cdcdcd) :: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.rabbitmq/amqp-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.rabbitmq/amqp-client)
+
 
 ## RabbitMQ
  
@@ -37,7 +36,7 @@ Next steps are explanation how I make this project.
 ###### Apache Maven
 With [Apache Maven](http://maven.apache.org/index.html) we can management our projects, add, update or delete dependencies the our projects. Is one of the way ... but its use is eassy.
 
-create project from command line:
+See in [mavem apache site](https://maven.apache.org/guides/getting-started/) how to started a project, I get this next command line for creting a project:
 
 ```
 $ mvn archetype:generate -DgroupId=edu.ale -DartifactId=first-step-rabbitMQ -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
