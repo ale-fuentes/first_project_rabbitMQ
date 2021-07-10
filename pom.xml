@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>first_step_rabbitMQ</name>
+	<groupId>edu.ale</groupId>
+	<artifactId>first_step_rabbitMQ</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncondig>UTF-8</project.build.sourceEncondig>
+		<project.reporting.sourceEncoding>UTF-8</project.reporting.sourceEncoding>
+
+		<java.version>11</java.version>
+		<maven.compiler.source>${java.versio}</maven.compiler.source>
+		<maven.compiler.target>${java.versio}</maven.compiler.target>
+		<maven-compiler-pluging.version>3.8.1</maven-compiler-pluging.version>
+
+		<!-- RabbitMQ -->
+		<rabbitMQ.version>5.12.0</rabbitMQ.version>
+
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-pluging.version}</version>
+				<configuration>
+					<source>${maven.compiler.sourcer}</source>
+					<target>${maven.compiler.sourcer}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- RabbitMQ -->
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>${rabbitMQ.version}</version>
+		</dependency>
+
+
+	</dependencies>
+
+</project>
