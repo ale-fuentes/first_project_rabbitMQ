@@ -12,7 +12,7 @@ Hi guys, welcome this simple project about [Message Broker](https://en.wikipedia
 * ![](https://img.shields.io/badge/Message_Broker-RabbitMQ-informational?style=flat&logo=RabbitMQ&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/Project_Management-MySql-informational?style=flat&logo=MySql&logoColor=white&color=cdcdcd)
 
 
-### Setions
+### Sessions
 - [Steps with RabbitMQ](README_RABBITMQ.md)
 - [Steps with MySQL](README_MYSQL.md)
 - [Steps with Docker](README_DOCKER.md)
