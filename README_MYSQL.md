@@ -69,4 +69,47 @@ Bye
 root@991e767c2815:/# exit
 exit
 ```
+After, I can create our custom configuration for MySQL. Ussing command **cat > my-custom.cnf** in the bash for create file. when finish write the configuration, push key 'CTRL + D' and finishing created the file:
 
+```
+root@991e767c2815:/etc/mysql/conf.d# ls 
+docker.cnf  mysql.cnf
+root@991e767c2815:/etc/mysql/conf.d# cat > my-custom.cnf
+[mysqld]
+max_connections=250
+
+root@991e767c2815:/etc/mysql/conf.d# ls
+docker.cnf  my-custom.cnf  mysql.cnf
+
+root@991e767c2815:/etc/mysql/conf.d# cat my-custom.cnf 
+[mysqld]
+max_connections=250
+
+root@991e767c2815:/etc/mysql/conf.d#
+```
+
+## Some command Docker
+
+To start your container run:
+
+```
+sudo docker start [container_name]
+```
+
+Stop the container, use the command:
+
+```
+sudo docker stop [container_name]
+```
+
+To restart the container run:
+
+```
+sudo docker restart [container_name]
+```
+
+Delete the Container. Before deleting a container, make sure you stop it first. Then, remove the docker container with:
+
+```
+sudo docker rm [container_name]
+```
