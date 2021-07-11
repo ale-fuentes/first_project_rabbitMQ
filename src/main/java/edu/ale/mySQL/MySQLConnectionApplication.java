@@ -1,19 +1,18 @@
-package edu.ale;
+package edu.ale.mySQL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@SpringBootApplication
+@Profile("send")
 public class MySQLConnectionApplication implements CommandLineRunner {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public static void main(String[] args) {
-        SpringApplication.run(MySQLConnectionApplication.class, args);
+        //SpringApplication.run(MySQLConnectionApplication.class, args);
     }
 
     @Override
@@ -26,4 +25,5 @@ public class MySQLConnectionApplication implements CommandLineRunner {
             System.out.println("A new row has been create with sucess!");
         }
     }
+
 }
