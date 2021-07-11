@@ -2,6 +2,7 @@
 ![](https://img.shields.io/badge/by-Alejandro.Fuentes-informational?style=flat&logoColor=white&color=cdcdcd)
 
 Hi guys, welcome this simple project about [Message Broker](https://en.wikipedia.org/wiki/Message_broker), but ussing [RabbitMQ](https://www.rabbitmq.com/).
+A message broker is simply a computer program that relays messages from the source(sender) to the destination(receiver).
 
 ## My technologies & tools
 
