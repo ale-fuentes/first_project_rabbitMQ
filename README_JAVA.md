@@ -23,6 +23,37 @@ After finish the process, the legend BUILD SUCCESS show:
 For add new dependencies in our project, I find they in [search maven site](https://mvnrepository.com/artifact/com.rabbitmq/amqp-client/5.12.0).
 I search the RabbitMQ Java client, [oficial site rabbitmq](https://www.rabbitmq.com/tutorials/tutorial-one-java.html) say the its is also in the central Maven repository, with the groupId com.rabbitmq and the artifactId amqp-client.
 
+### Configurate Dependencies for Sprint Boot
+
+In te site [mvn repository](https://mvnrepository.com/artifact/mysql/mysql-connector-java) seed how to add in our file configuration of project, 'pom.xml' the mysql dependencie:
+
+```
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+
+Next, add in configuration, how to the project connect with MySql. This configutation are write in 'application.properties' file (where has '--new-paswword--' you write the same password the changed when install mysql from docker):
+
+```
+# connection mysql
+spring.datasource.url=jdbc:mysql://localhost:3306/messages
+spring.datasource.username=root
+spring.datasource.password='--new-password--'
+```
+
+This project are think with Spring Boot, therefore we need add next dependency in our file 'pom.xml' (we can search it in [mvn repository](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc/2.5.2)):
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+    <version>2.5.2</version>
+</dependency>
+```
+
 ### Frist concept about RabbitMQ with Java
 
 In the site [RabbitMQ API guide](https://www.rabbitmq.com/api-guide.html), talk about some methods that can usse for create conections:
