@@ -181,5 +181,3 @@ public class Send {
 
 }
 ```
-
-![Example Sending message](https://share.vidyard.com/watch/YYpteq2w6fUkrvuBQY9zBs?)
