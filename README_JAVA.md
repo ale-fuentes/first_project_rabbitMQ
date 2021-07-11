@@ -23,7 +23,7 @@ After finish the process, the legend BUILD SUCCESS show:
 For add new dependencies in our project, I find they in [search maven site](https://mvnrepository.com/artifact/com.rabbitmq/amqp-client/5.12.0).
 I search the RabbitMQ Java client, [oficial site rabbitmq](https://www.rabbitmq.com/tutorials/tutorial-one-java.html) say the its is also in the central Maven repository, with the groupId com.rabbitmq and the artifactId amqp-client.
 
-### Configurate Dependencies for Sprint Boot
+#### Configurate Dependencies for Sprint Boot
 
 In te site [mvn repository](https://mvnrepository.com/artifact/mysql/mysql-connector-java) seed how to add in our file configuration of project, 'pom.xml' the mysql dependencie:
 
@@ -141,3 +141,45 @@ In the site [RabbitMQ API guide](https://www.rabbitmq.com/api-guide.html), talk 
 - **DefaultConsumer**: _commonly used base class for consumers_
 - **BasicProperties**: _message properties (metadata)_
 - **BasicProperties.Builder**: _builder for BasicProperties_
+
+#### Write our example Send and Receiver ussing RabbitMQ
+
+First example, is for sending one message, this project are make in package 'rabbitMQ':
+
+```
+package edu.ale.rabbitMQ;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
+
+@Profile("send")
+public class Send {
+
+	static Logger logger = LoggerFactory.getLogger(Send.class);
+	private static String QUEUE_NAME = "msgale";
+
+	public static void main(String ...args) throws IOException, TimeoutException {
+		ConnectionFactory factory = new ConnectionFactory();
+		factory.setHost("localhost");
+		Connection connection = factory.newConnection();
+		Channel channel = connection.createChannel();
+		channel.queueDeclare(QUEUE_NAME,false,false,false, null);
+		String message ="Hi Neo ...";
+		channel.basicPublish("", QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
+		logger.info("[!] Send message for queue");
+		channel.close();
+		connection.close();
+	}
+
+}
+```
+
+![Example Sending message](https://share.vidyard.com/watch/YYpteq2w6fUkrvuBQY9zBs?)
