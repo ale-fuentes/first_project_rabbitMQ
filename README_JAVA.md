@@ -28,9 +28,11 @@ I search the RabbitMQ Java client, [oficial site rabbitmq](https://www.rabbitmq.
 In te site [mvn repository](https://mvnrepository.com/artifact/mysql/mysql-connector-java) seed how to add in our file configuration of project, 'pom.xml' the mysql dependencie:
 
 ```
+<!-- MySQL -->
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
+    <version>${mysql.version}</version>
     <scope>runtime</scope>
 </dependency>
 ```
@@ -47,11 +49,85 @@ spring.datasource.password='--new-password--'
 This project are think with Spring Boot, therefore we need add next dependency in our file 'pom.xml' (we can search it in [mvn repository](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc/2.5.2)):
 
 ```
+<!-- SPRING BOOT -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-jdbc</artifactId>
-    <version>2.5.2</version>
+    <version>${spring-boot.version}</version>
 </dependency>
+```
+
+The versions are wrote in the section 'properties':
+
+```
+<!-- MySQL -->
+<mysql.version>8.0.25</mysql.version>
+
+<!-- SPRING BOOT -->
+<spring-boot.version>2.5.2</spring-boot.version>
+```
+
+### Write coding in Java for first testing
+
+In project java, create a class 'MySQLConnectioonApplication', in there we write one test for know if connection with docker image are been success:
+
+```
+package edu.ale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+@SpringBootApplication
+public class MySQLConnectionApplication implements CommandLineRunner {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    public static void main(String[] args) {
+        SpringApplication.run(MySQLConnectionApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        String sql = "INSERT INTO messagebroker (message) VALUES (?)";
+
+        int result = jdbcTemplate.update(sql, "mensage de teste");
+
+        if(result > 0){
+            System.out.println("A new row has been create with sucess!");
+        }
+    }
+}
+```
+
+### Verify if row are saved in the table MySql
+
+Connect in our mysql cli from docker, and verify if the table '_messagebroker_' are change:
+
+```
+# mysql -uroot -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.25 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> select * from messagebroker;
++----+------------------+
+| id | message          |
++----+------------------+
+|  1 | mensage de teste |
++----+------------------+
+1 row in set (0.00 sec)
 ```
 
 ### Frist concept about RabbitMQ with Java
