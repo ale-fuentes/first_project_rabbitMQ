@@ -12,6 +12,7 @@ public class Recv {
 	public static void main(String[] args) throws Exception  {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
+
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 		
