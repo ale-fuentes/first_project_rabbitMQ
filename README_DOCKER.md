@@ -1,5 +1,5 @@
 # Steps with Docker
-![](https://img.shields.io/badge/by-Alejandro.Fuentes-informational?style=flat&logoColor=white&color=cdcdcd)
+![](https://img.shields.io/badge/by-Alejandro.Fuentes-informational?style=flat&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/OS-Windows-informational?style=flat&logo=windows&logoColor=white&color=cdcdcd)
 
 - [Return Main Session](README.md)
 
@@ -13,23 +13,23 @@ Doker are a popular gestor of repositories.<br />
 To start your container run:
 
 ```
-sudo docker start [container_name]
+$ docker start [container_name]
 ```
 
 Stop the container, use the command:
 
 ```
-sudo docker stop [container_name]
+$ docker stop [container_name]
 ```
 
 To restart the container run:
 
 ```
-sudo docker restart [container_name]
+$ docker restart [container_name]
 ```
 
 Delete the Container. Before deleting a container, make sure you stop it first. Then, remove the docker container with:
 
 ```
-sudo docker rm [container_name]
+$ docker rm [container_name]
 ```

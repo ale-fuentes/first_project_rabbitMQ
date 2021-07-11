@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="first_step_rabbitMQ" target="${maven.compiler.sourcer}" />
+      <module name="first_step_rabbitMQ" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

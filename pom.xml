@@ -24,6 +24,11 @@
 		<!-- RabbitMQ -->
 		<rabbitMQ.version>5.12.0</rabbitMQ.version>
 
+		<!-- MySQL -->
+		<mysql.version>8.0.25</mysql.version>
+
+		<!-- SPRING BOOT -->
+		<spring-boot.version>2.5.2</spring-boot.version>
 	</properties>
 
 	<build>
@@ -33,8 +38,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-pluging.version}</version>
 				<configuration>
-					<source>${maven.compiler.sourcer}</source>
-					<target>${maven.compiler.sourcer}</target>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -56,6 +61,20 @@
 			<version>${rabbitMQ.version}</version>
 		</dependency>
 
+		<!-- MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- SPRING BOOT -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
 
 	</dependencies>
 

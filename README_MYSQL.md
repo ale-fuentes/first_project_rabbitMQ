@@ -1,5 +1,5 @@
 # Steps with MySQL
-![](https://img.shields.io/badge/by-Alejandro.Fuentes-informational?style=flat&logoColor=white&color=cdcdcd)
+![](https://img.shields.io/badge/by-Alejandro.Fuentes-informational?style=flat&logoColor=white&color=cdcdcd) ![](https://img.shields.io/badge/OS-Windows-informational?style=flat&logo=windows&logoColor=white&color=cdcdcd)
 
 - [Return Main Session](README.md)
 
@@ -16,7 +16,7 @@ docker.io/library/mysql:latest
 Now up the mySql
 
 ```
-$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:latest
+$ docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=messages mysql
 ```
 
 test if MySql are running
@@ -144,23 +144,22 @@ We need one table, where RabbitMQ when read a queue, and has a new iten, the ite
 
 ```
 mysql> CREATE TABLE messagebroker(
-    -> id INT NOT NULL,
+    -> id INT NOT NULL AUTO_INCREMENT,
     -> message VARCHAR(100) NOT NULL,
     -> PRIMARY KEY(id));
-Query OK, 0 rows affected (0.04 sec)
+Query OK, 0 rows affected (0.03 sec)
 ```
 
 For know is table are been create, ussing command 'DESCRIBE':
 
 ```
-mysql> DESCRIBE messagebroker
-    -> ;
-+---------+--------------+------+-----+---------+-------+
-| Field   | Type         | Null | Key | Default | Extra |
-+---------+--------------+------+-----+---------+-------+
-| id      | int          | NO   | PRI | NULL    |       |
-| message | varchar(100) | NO   |     | NULL    |       |
-+---------+--------------+------+-----+---------+-------+
+mysql> DESCRIBE messagebroker;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int          | NO   | PRI | NULL    | auto_increment |
+| message | varchar(100) | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
 2 rows in set (0.00 sec)
 
 mysql>
