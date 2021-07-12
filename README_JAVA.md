@@ -67,7 +67,7 @@ The versions are wrote in the section 'properties':
 <spring-boot.version>2.5.2</spring-boot.version>
 ```
 
-#### Write coding in Java for first testing
+### Write coding in Java for first testing
 
 In project java, create a class 'MySQLConnectioonApplication', in there we write one test for know if connection with docker image are been success:
 
@@ -103,7 +103,7 @@ public class MySQLConnectionApplication implements CommandLineRunner {
 }
 ```
 
-#### Verify if row are saved in the table MySql
+### Verify if row are saved in the table MySql
 
 Connect in our mysql cli from docker, and verify if the table '_messagebroker_' are change:
 
