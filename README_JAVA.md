@@ -185,3 +185,51 @@ In site RabbitMQ, we can see the message:
 
 ![image](https://user-images.githubusercontent.com/67701790/125213985-1d9b9880-e28b-11eb-9bd3-d6d56aaba289.png)
 ![image](https://user-images.githubusercontent.com/67701790/125214094-a1558500-e28b-11eb-9e8e-2847c55552a5.png)
+
+Second, example for receive message from RabbitMQ
+
+```
+package edu.ale.rabbitMQ;
+
+import com.rabbitmq.client.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+@Profile("receive")
+public class Receive {
+
+	static Logger logger = LoggerFactory.getLogger(Receive.class);
+	private final static String QUEUE_NAME = "msgale";
+
+	public static void main(String ...args) throws IOException, TimeoutException {
+		ConnectionFactory factory = new ConnectionFactory();
+		factory.setHost("localhost");
+		Connection connection = factory.newConnection();
+		Channel channel = connection.createChannel();
+		channel.queueDeclare(QUEUE_NAME,false,false,false, null);
+		logger.info("[!] Waiting for messages. Please for exit press 'CTRL + C'");
+		Consumer consumer = new DefaultConsumer(channel){
+			@Override
+			public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException{
+				String message = new String(body, "UTF-8");
+				logger.info("[!] Message are been recieved. Content: '" + message + "'");
+			}
+		};
+		channel.basicConsume(QUEUE_NAME, true, consumer);
+	}
+}
+```
+
+Example execution:
+
+```
+
+"C:\Program Files\Java\jdk1.8.0_291\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\lib\idea_rt.jar=56006:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_291\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\rt.jar;D:\PROJECTS\JAVA\baby_project_of_rabbitMQ\first_project_rabbitMQ\target\classes;C:\Users\fuent\.m2\repository\com\rabbitmq\amqp-client\5.12.0\amqp-client-5.12.0.jar;C:\Users\fuent\.m2\repository\org\slf4j\slf4j-api\2.0.0-alpha2\slf4j-api-2.0.0-alpha2.jar;C:\Users\fuent\.m2\repository\org\slf4j\slf4j-simple\2.0.0-alpha2\slf4j-simple-2.0.0-alpha2.jar;C:\Users\fuent\.m2\repository\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar;C:\Users\fuent\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\fuent\.m2\repository\org\springframework\boot\spring-boot-starter-amqp\2.5.2\spring-boot-starter-amqp-2.5.2.jar;C:\Users\fuent\.m2\repository\org\springframework\boot\spring-boot-starter\2.5.2\spring-boot-starter-2.5.2.jar;C:\Users\fuent\.m2\repository\org\springframework\boot\spring-boot\2.5.2\spring-boot-2.5.2.jar;C:\Users\fuent\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.5.2\spring-boot-autoconfigure-2.5.2.jar;C:\Users\fuent\.m2\repository\org\springframework\boot\spring-boot-starter-logging\2.5.2\spring-boot-starter-logging-2.5.2.jar;C:\Users\fuent\.m2\repository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\fuent\.m2\repository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\fuent\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.14.1\log4j-to-slf4j-2.14.1.jar;C:\Users\fuent\.m2\repository\org\apache\logging\log4j\log4j-api\2.14.1\log4j-api-2.14.1.jar;C:\Users\fuent\.m2\repository\org\slf4j\jul-to-slf4j\1.7.31\jul-to-slf4j-1.7.31.jar;C:\Users\fuent\.m2\repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-core\5.3.8\spring-core-5.3.8.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-jcl\5.3.8\spring-jcl-5.3.8.jar;C:\Users\fuent\.m2\repository\org\yaml\snakeyaml\1.28\snakeyaml-1.28.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-messaging\5.3.8\spring-messaging-5.3.8.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-beans\5.3.8\spring-beans-5.3.8.jar;C:\Users\fuent\.m2\repository\org\springframework\amqp\spring-rabbit\2.3.9\spring-rabbit-2.3.9.jar;C:\Users\fuent\.m2\repository\org\springframework\amqp\spring-amqp\2.3.9\spring-amqp-2.3.9.jar;C:\Users\fuent\.m2\repository\org\springframework\retry\spring-retry\1.3.1\spring-retry-1.3.1.jar;C:\Users\fuent\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-context\5.3.7\spring-context-5.3.7.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-aop\5.3.7\spring-aop-5.3.7.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-expression\5.3.7\spring-expression-5.3.7.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-tx\5.3.7\spring-tx-5.3.7.jar;C:\Users\fuent\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\2.5.2\spring-boot-starter-jdbc-2.5.2.jar;C:\Users\fuent\.m2\repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;C:\Users\fuent\.m2\repository\org\springframework\spring-jdbc\5.3.8\spring-jdbc-5.3.8.jar" edu.ale.rabbitMQ.Receive -Dspring.profile.active=send
+[main] INFO edu.ale.rabbitMQ.Receive - [!] Waiting for messages. Please for exit press 'CTRL + C'
+[pool-1-thread-4] INFO edu.ale.rabbitMQ.Receive - [!] Message are been recieved. Content: 'Hi Neo ...'
+
+```
