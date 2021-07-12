@@ -1,4 +1,4 @@
-package edu.ale.rabbitMQ;
+package edu.ale.teste.rabbitMQ;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

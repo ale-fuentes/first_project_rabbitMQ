@@ -1,6 +1,7 @@
-package edu.ale.rabbitMQ;
+package edu.ale.teste.rabbitMQ;
 
 import com.rabbitmq.client.*;
+import edu.ale.entity.MessageBroker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
@@ -25,6 +26,9 @@ public class Receive {
 			@Override
 			public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException{
 				String message = new String(body, "UTF-8");
+				MessageBroker messageBroker = new MessageBroker();
+				messageBroker.setMessage(message);
+
 				logger.info("[!] Message are been recieved. Content: '" + message + "'");
 			}
 		};
