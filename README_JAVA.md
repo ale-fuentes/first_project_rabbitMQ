@@ -181,3 +181,7 @@ public class Send {
 
 }
 ```
+In site RabbitMQ, we can see the message:
+
+![image](https://user-images.githubusercontent.com/67701790/125213985-1d9b9880-e28b-11eb-9bd3-d6d56aaba289.png)
+![image](https://user-images.githubusercontent.com/67701790/125214094-a1558500-e28b-11eb-9e8e-2847c55552a5.png)
