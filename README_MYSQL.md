@@ -29,6 +29,36 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED         
                                                                                            some-mysql
 ```
 
+For verify what IP are use, we verify with next command:
+
+```
+$ docker inspect test-mysql
+```
+
+some information that command get for we see:
+
+```
+...
+"Ports": {
+              "3306/tcp": [
+                  {
+                      "HostIp": "0.0.0.0",
+                      "HostPort": "3306"
+                  },
+                  {
+                      "HostIp": "::",
+                      "HostPort": "3306"
+                  }
+              ],
+              "33060/tcp": null
+          },
+...
+...
+   "IPAddress": "172.17.0.3",
+...
+...
+```
+
 ## Testing 
 
 Next, from CMD os outher bash, open client SQL 
@@ -161,6 +191,34 @@ mysql> DESCRIBE messagebroker;
 | message | varchar(100) | NO   |     | NULL    |                |
 +---------+--------------+------+-----+---------+----------------+
 2 rows in set (0.00 sec)
+
+mysql>
+```
+
+Create table *notification*:
+
+```
+mysql> CREATE TABLE notification(
+    -> id INT NOT NULL AUTO_INCREMENT,
+    -> message_id INT NOT NULL,
+    -> message VARCHAR(100) NOT NULL,
+    -> server_ip VARCHAR(40) NOT NULL,
+    -> date DATE,
+    -> PRIMARY KEY (id)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESCRIBE notification;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| message_id | int          | NO   |     | NULL    |                |
+| message    | varchar(100) | NO   |     | NULL    |                |
+| server_ip  | varchar(40)  | NO   |     | NULL    |                |
+| date       | date         | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
 
 mysql>
 ```
