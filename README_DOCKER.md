@@ -33,3 +33,8 @@ Delete the Container. Before deleting a container, make sure you stop it first. 
 ```
 $ docker rm [container_name]
 ```
+Run bash some docker image:
+
+```
+$ docker exec -it some-mysql bash
+```
