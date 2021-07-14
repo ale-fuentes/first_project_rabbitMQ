@@ -6,6 +6,10 @@
 Hi guys, welcome this simple project about [Message Broker](https://en.wikipedia.org/wiki/Message_broker), but ussing [RabbitMQ](https://www.rabbitmq.com/).<br>
 A message broker is simply a computer program that relays messages from the source(sender) to the destination(receiver).
 
+<a href="https://github.com/ale-fuentes/first_project_rabbitMQ">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=ale-fuentes&repo=first_project_rabbitMQ&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21" />
+</a>
+
 ## My technologies & tools
 
 * ![](https://img.shields.io/badge/OS-Windows-informational?style=flat&logo=windows&logoColor=white&color=cdcdcd)
